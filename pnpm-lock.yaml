@@ -13,9 +13,11 @@ specifiers:
   postcss: ^8.4.17
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-router-dom: '6'
   react-scripts: 5.0.1
   tailwindcss: ^3.1.8
   typescript: ^4.8.4
+  use-react-router-breadcrumbs: ^4.0.0
   web-vitals: ^2.1.4
 
 dependencies:
@@ -29,8 +31,10 @@ dependencies:
   axios: 1.1.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
   react-scripts: 5.0.1_uz2ogxeagc4rbieizlfzyaazee
   typescript: 4.8.4
+  use-react-router-breadcrumbs: 4.0.0_pabvhrceggmmmx2imbdwgld6kq
   web-vitals: 2.1.4
 
 devDependencies:
@@ -1989,6 +1993,11 @@ packages:
       source-map: 0.7.4
       webpack: 5.74.0
       webpack-dev-server: 4.11.1_webpack@5.74.0
+    dev: false
+
+  /@remix-run/router/1.0.2:
+    resolution: {integrity: sha512-GRSOFhJzjGN+d4sKHTMSvNeUPoZiDHWmRnXfzaxrqe7dE/Nzlc8BiMSJdLDESZlndM7jIUrZ/F4yWqVYlI0rwQ==}
+    engines: {node: '>=14'}
     dev: false
 
   /@rollup/plugin-babel/5.3.1_vy4anxjpv2s44kyfi2kxqu576u:
@@ -8026,6 +8035,29 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
+  /react-router-dom/6.4.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-yM1kjoTkpfjgczPrcyWrp+OuQMyB1WleICiiGfstnQYo/S8hPEEnVjr/RdmlH6yKK4Tnj1UGXFSa7uwAtmDoLQ==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.0.2
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-router: 6.4.2_react@18.2.0
+    dev: false
+
+  /react-router/6.4.2_react@18.2.0:
+    resolution: {integrity: sha512-Rb0BAX9KHhVzT1OKhMvCDMw776aTYM0DtkxqUBP8dNBom3mPXlfNs76JNGK8wKJ1IZEY1+WGj+cvZxHVk/GiKw==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.0.2
+      react: 18.2.0
+    dev: false
+
   /react-scripts/5.0.1_uz2ogxeagc4rbieizlfzyaazee:
     resolution: {integrity: sha512-8VAmEm/ZAwQzJ+GOMLbBsTdDKOpuZh7RPs0UymvBR2vRk4iZWCskjbFnxqjrzoIvlNNRZ3QJFx6/qDSi6zSnaQ==}
     engines: {node: '>=14.0.0'}
@@ -9268,6 +9300,16 @@ packages:
     dependencies:
       querystringify: 2.2.0
       requires-port: 1.0.0
+    dev: false
+
+  /use-react-router-breadcrumbs/4.0.0_pabvhrceggmmmx2imbdwgld6kq:
+    resolution: {integrity: sha512-65nVc6DAT3otY/4uXq9IOIat5CRJGmfGn4kzS7LizUFPEkTQyLmsc3BbNrSOGwx+Q34vWy8cujSeJgYyx+BUeg==}
+    peerDependencies:
+      react: '>=16.8'
+      react-router-dom: '>=6.0.0'
+    dependencies:
+      react: 18.2.0
+      react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
     dev: false
 
   /util-deprecate/1.0.2:

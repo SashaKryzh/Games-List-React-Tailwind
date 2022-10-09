@@ -1,7 +1,20 @@
-import React, { ReactElement, useEffect, useState } from "react";
-import IGDBClient from "./igdb_client";
+import { ReactElement, useState } from "react";
+import Game from "../components/Game";
+import MainContent from "../components/MainContent";
+import IGDBClient from "../api/igdb_client";
 
-export default function Games() {
+export default function Home() {
+  return (
+    <MainContent>
+      <h1 className="text-2xl font-mono font-extrabold text-center">
+        Hello world!
+      </h1>
+      <Games />
+    </MainContent>
+  );
+}
+
+function Games() {
   const [gameList, setGameList] = useState<ReactElement[]>([]);
 
   return (
@@ -32,16 +45,4 @@ async function loadGames(): Promise<ReactElement[]> {
   // let gameList = gameResponce.map((gameInfo) => Game(gameInfo));
 
   return [];
-}
-
-function Game(props: {
-  game: { name: string; imageUrl?: string };
-}): ReactElement {
-  return (
-    <div className="">
-      <div className="aspect-[3/4] rounded-sm flex flex-col justify-end transition-all p-4 hover:bg-opacity-25 hover:bg-black">
-        <span className="text-2xl font-medium">{props.game.name}</span>
-      </div>
-    </div>
-  );
 }

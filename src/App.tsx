@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Games from "./Games";
-import IGDBClient from "./igdb_client";
+import IGDBClient from "./api/igdb_client";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import GameDetails from "./pages/GameDetails";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -16,25 +19,16 @@ export default function App() {
   }
 
   return (
-    <div className="h-screen bg-slate-800">
-      <MainContent>
-        <h1 className="text-2xl font-mono font-extrabold text-center">
-          Hello world!
-        </h1>
-        <Games />
-      </MainContent>
+    <div className="h-full min-h-screen py-4 bg-slate-800">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:id" element={<GameDetails />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }
 
 function Loading() {
   return <p className="text-center italic">Loading...</p>;
-}
-
-function MainContent(props: { children: React.ReactNode }) {
-  return (
-    <div className="px-20">
-      {props.children}
-    </div>
-  );
 }
