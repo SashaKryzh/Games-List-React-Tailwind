@@ -1,7 +1,7 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import Game from "../components/Game";
 import MainContent from "../components/MainContent";
-import IGDBClient from "../api/igdb_client";
+import GamesApi from "../api/games_api";
 
 export default function Home() {
   return (
@@ -15,16 +15,14 @@ export default function Home() {
 }
 
 function Games() {
-  const [gameList, setGameList] = useState<ReactElement[]>([]);
+  const [gamesList, setGamesList] = useState<ReactElement[]>([]);
+
+  useEffect(() => {
+    GamesApi.getGames().then((games) => {});
+  }, []);
 
   return (
     <div>
-      <button
-        className="bg-slate-300 p-2 rounded-md"
-        onClick={async () => setGameList(await loadGames())}
-      >
-        Load game list
-      </button>
       <div className="grid grid-cols-4 gap-4 items-stretch">
         <Game game={{ name: "test" }} />
         <Game game={{ name: "test" }} />
@@ -35,14 +33,4 @@ function Games() {
       </div>
     </div>
   );
-}
-
-async function loadGames(): Promise<ReactElement[]> {
-  // make request
-  let gameResponce = await IGDBClient.getGames();
-  console.log(gameResponce);
-
-  // let gameList = gameResponce.map((gameInfo) => Game(gameInfo));
-
-  return [];
 }

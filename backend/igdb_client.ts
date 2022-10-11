@@ -1,16 +1,17 @@
 import axios from "axios";
-import { getConfigFileParsingDiagnostics } from "typescript";
 
 export default class IGDBClient {
-  private static readonly API_BASE_URL = "https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4"
+  // proxy https://cors-anywhere.herokuapp.com/
+
   private static readonly AUTH_BASE_URL = "https://id.twitch.tv";
+  private static readonly API_BASE_URL = "https://api.igdb.com/v4";
 
   public static accessToken: string | null = null;
 
   private static readonly instance = axios.create({
     baseURL: IGDBClient.API_BASE_URL,
     headers: {
-      "Client-ID": process.env.REACT_APP_CLIENT_ID,
+      "Client-ID": process.env.CLIENT_ID,
       "Content-Type": "application/json",
     },
   });
@@ -20,11 +21,11 @@ export default class IGDBClient {
   });
 
   // Get access token and save
-  static async getAccessToken(): Promise<void> {
+  static async initAccessToken(): Promise<void> {
     const response = await IGDBClient.authInstance.post("/oauth2/token", null, {
       params: {
-        client_id: process.env.REACT_APP_CLIENT_ID,
-        client_secret: process.env.REACT_APP_CLIENT_SECRET,
+        client_id: process.env.CLIENT_ID,
+        client_secret: process.env.CLIENT_SECRET,
         grant_type: "client_credentials",
       },
     });
@@ -49,6 +50,10 @@ export default class IGDBClient {
       "/games",
       `fields name; limit 10;`
     );
+    console.log("Here");
+    
+    console.log(response.data);
+    
     return response.data;
   }
 }
