@@ -2,6 +2,11 @@
 
 ## How to run
 
-Only frontend: `pnpm frontend start`.  
-Only backend: `pnpm backend start`.  
+Frontend: `pnpm frontend start`.  
+Backend: `pnpm backend start`.  
 Both: `pnpm start`.
+
+## TODO
+
+- [ ] Dark/light mode
+- [ ] Pagination
