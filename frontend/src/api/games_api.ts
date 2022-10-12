@@ -8,18 +8,18 @@ export default class GamesApi {
     baseURL: GamesApi.API_BASE_URL,
   });
 
-  // Get game by name
-  static async getGameByName(name: string) {
-    const response = await GamesApi.instance.get<Game>("/game", {
-      params: { name: name },
-    });
+  static async getGamesByName(name: string): Promise<Game[]> {
+    const response = await GamesApi.instance.get<Game[]>(`/games/name/${name}`);
     return response.data;
   }
 
-  static async getGames() {
-    console.log("Requesting server");
+  static async getGamesBySlug(slug: string): Promise<Game[]> {
+    const response = await GamesApi.instance.get<Game[]>(`/games/slug/${slug}`);
+    return response.data;
+  }
+
+  static async getGames(): Promise<Game[]> {
     const response = await GamesApi.instance.get<Game[]>("/games");
-    console.log(response);
     return response.data;
   }
 }
