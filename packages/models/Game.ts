@@ -1,5 +1,6 @@
 export interface Game {
   // Small game object fields
+  id: number;
   slug: string;
   name: string;
   coverUrl: string; // URL to the cover image

@@ -24,11 +24,11 @@ export default class IGDBClient {
     console.log(this.accessToken);
   }
 
-  static async getGameByName(name: string): Promise<Game[]> {
-    console.log("igbd get game by name");
+  
+  static async getGamesByName(name: string): Promise<Game[]> {
     const response = await axios.post(
       `${this.API_BASE_URL}/games`,
-      `fields id, name, cover.url; search "${name}";`,
+      `fields id, slug, name, cover.url, summary, genres.name, screenshots.url; search "${name}";`,
       {
         headers: {
           'Accept': 'application/json',
@@ -38,20 +38,31 @@ export default class IGDBClient {
       },
     );
     console.log(response.data);
+    // TODO: populate with company
+    return response.data.map(this.mapResponseToGame);
+  }
 
-    return response.data.map((game: any) => {
-      return {
-        id: game.id,
-        name: game.name,
-      };
-    });
+  static async getGamesBySlug(slug: string): Promise<Game[]> {
+    const response = await axios.post(
+      `${this.API_BASE_URL}/games`,
+      `fields id, slug, name, cover.url, summary, genres.name, screenshots.url; where slug = "${slug}";`,
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Client-ID': process.env.CLIENT_ID,
+          'Authorization': `Bearer ${IGDBClient.accessToken}`,
+        },
+      },
+    );
+    console.log(response.data);
+    // TODO: populate with company
+    return response.data.map(this.mapResponseToGame);
   }
 
   static async getGames(): Promise<Game[]> {
-    console.log("igbd get games");
     const response = await axios.post(
       `${this.API_BASE_URL}/games`,
-      "fields id, name, cover.url;",
+      "fields id, slug, name, cover.url;",
       {
         headers: {
           'Accept': 'application/json',
@@ -60,13 +71,20 @@ export default class IGDBClient {
         },
       },
     );
-    
     console.log(response.data);
-    return response.data.map((game: any) => {
-      return {
-        id: game.id,
-        name: game.name,
-      };
-    });
+    return response.data.map(this.mapResponseToGame);
+  }
+
+  private static mapResponseToGame(response: any): Game {
+    return {
+      id: response.id,
+      name: response.name,
+      slug: response.slug,
+      coverUrl: response.cover?.url,
+      summary: response.summary,
+      genres: response.genres?.map((genre: any) => genre.name),
+      screenshots: response.screenshots?.map((screenshot: any) => screenshot.url),
+      company: response.company?.name,
+    };
   }
 }

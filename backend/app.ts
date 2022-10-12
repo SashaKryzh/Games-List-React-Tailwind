@@ -24,13 +24,11 @@ app.use((req, res, next) => {
 
 // apis
 app.get("/games", async (req, res) => res.send(await IGDBClient.getGames()));
-app.get("/game", async (req, res) => {
-  const parsedQuery = url.parse(req.url, true).query;
-  if (parsedQuery.name !== undefined) {
-    res.send(await IGDBClient.getGameByName(parsedQuery.name as string));
-  } else {
-    res.send("No name in query");
-  }
+app.get("/games/name/:name", async (req, res) => {
+  res.send(await IGDBClient.getGamesByName(req.params.name));
+});
+app.get("/games/slug/:slug", async (req, res) => {
+  res.send(await IGDBClient.getGamesBySlug(req.params.slug));
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
