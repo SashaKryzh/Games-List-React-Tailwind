@@ -7,4 +7,5 @@ export interface Game {
   summary?: string;
   genres?: string[]; // Names
   screenshots?: string[]; // URLs of the game screenshots
+  company?: string; // Company name
 }
