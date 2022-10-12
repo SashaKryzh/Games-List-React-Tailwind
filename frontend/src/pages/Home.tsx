@@ -21,7 +21,8 @@ function Games() {
   // const [gamesList, setGamesList] = useState<ReactElement[]>([]);
 
   useEffect(() => {
-    GamesApi.getGames().then((games) => {});
+    GamesApi.getGames().then((games) => {console.log(games);
+    });
   }, []);
 
   return (

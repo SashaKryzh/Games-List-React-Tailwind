@@ -1,59 +1,72 @@
 import axios from "axios";
+import { Game } from "@app/models";
 
 export default class IGDBClient {
-  // proxy https://cors-anywhere.herokuapp.com/
 
   private static readonly AUTH_BASE_URL = "https://id.twitch.tv";
   private static readonly API_BASE_URL = "https://api.igdb.com/v4";
 
   public static accessToken: string | null = null;
 
-  private static readonly instance = axios.create({
-    baseURL: IGDBClient.API_BASE_URL,
-    headers: {
-      "Client-ID": process.env.CLIENT_ID,
-      "Content-Type": "application/json",
-    },
-  });
-
   private static readonly authInstance = axios.create({
     baseURL: IGDBClient.AUTH_BASE_URL,
   });
 
-  // Get access token and save
   static async initAccessToken(): Promise<void> {
     const response = await IGDBClient.authInstance.post("/oauth2/token", null, {
       params: {
         client_id: process.env.CLIENT_ID,
         client_secret: process.env.CLIENT_SECRET,
         grant_type: "client_credentials",
-      },
+      }
     });
     this.accessToken = response.data.access_token;
-    IGDBClient.instance.interceptors.request.use((config) => {
-      config.headers!.Authorization = `Bearer ${IGDBClient.accessToken}`;
-      return config;
+    console.log(this.accessToken);
+  }
+
+  static async getGameByName(name: string): Promise<Game[]> {
+    console.log("igbd get game by name");
+    const response = await axios.post(
+      `${this.API_BASE_URL}/games`,
+      `fields id, name, cover.url; search "${name}";`,
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Client-ID': process.env.CLIENT_ID,
+          'Authorization': `Bearer ${IGDBClient.accessToken}`,
+        },
+      },
+    );
+    console.log(response.data);
+
+    return response.data.map((game: any) => {
+      return {
+        id: game.id,
+        name: game.name,
+      };
     });
   }
 
-  // Get game by name
-  static async getGameByName(name: string) {
-    const response = await IGDBClient.instance.post(
-      "/games",
-      `fields name, cover.url; search "${name}";`
+  static async getGames(): Promise<Game[]> {
+    console.log("igbd get games");
+    const response = await axios.post(
+      `${this.API_BASE_URL}/games`,
+      "fields id, name, cover.url;",
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Client-ID': process.env.CLIENT_ID,
+          'Authorization': `Bearer ${IGDBClient.accessToken}`,
+        },
+      },
     );
-    return response.data;
-  }
-
-  static async getGames() {
-    const response = await IGDBClient.instance.post(
-      "/games",
-      `fields name; limit 10;`
-    );
-    console.log("Here");
     
     console.log(response.data);
-    
-    return response.data;
+    return response.data.map((game: any) => {
+      return {
+        id: game.id,
+        name: game.name,
+      };
+    });
   }
 }
