@@ -1,4 +1,10 @@
 export interface Game {
-  id: number;
+  // Small game object fields
+  slug: string;
   name: string;
+  coverUrl: string; // URL to the cover image
+  // Full game object fields
+  summary?: string;
+  genres?: string[]; // Names
+  screenshots?: string[]; // URLs of the game screenshots
 }
