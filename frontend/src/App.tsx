@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
-    <div className="h-full min-h-screen py-4 bg-slate-800">
+    <div className="h-full min-h-screen flex flex-col bg-slate-700">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:id" element={<GameDetails />} />
