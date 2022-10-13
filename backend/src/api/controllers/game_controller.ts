@@ -7,7 +7,7 @@ export default class GameController {
 
     const response = await IGDBProxy.post(
       "/games",
-      `fields id, slug, name, cover.url; limit 20; offset ${offset};`
+      `fields id, slug, name, cover.url; limit 20; offset ${offset}; where cover.url != null;`
     );
     if (response.status !== 200) {
       return [];
@@ -20,7 +20,7 @@ export default class GameController {
 
     const response = await IGDBProxy.post(
       "/games",
-      `fields id, slug, name, cover.url, summary, genres.name, screenshots.url; limit 20; offset ${offset}; search "${name}";`
+      `fields id, slug, name, cover.url, summary, genres.name, screenshots.url; limit 20; offset ${offset}; search "${name}"; where cover.url != null;`
     );
     if (response.status !== 200) {
       return [];
@@ -32,7 +32,7 @@ export default class GameController {
   static async getGamesBySlug(slug: string): Promise<Game[]> {
     const response = await IGDBProxy.post(
       "/games",
-      `fields id, slug, name, cover.url, summary, genres.name, screenshots.url; limit 20; where slug = "${slug}";`
+      `fields id, slug, name, cover.url, summary, genres.name, screenshots.url; limit 20; where slug = "${slug}" & cover.url != null;`
     );
     if (response.status !== 200) {
       return [];
