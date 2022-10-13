@@ -13,7 +13,9 @@ export default function GameDetails() {
   const [liked, setLiked] = useState<boolean | null>(null);
 
   useEffect(() => {
-    GamesApi.getGamesBySlug(`${id}`).then(games => games[0] ?? null).then(setGame);
+    GamesApi.getGamesBySlug(`${id}`)
+      .then((games) => games[0] ?? null)
+      .then(setGame);
   }, [id]);
 
   console.log(game);
@@ -24,11 +26,18 @@ export default function GameDetails() {
   const company = game?.company ?? "Loading...";
   const genres: string[] = game?.genres ?? [];
 
+  let url =
+    "https://via.placeholder.com/150/000000/FFFFFF/?text=No+Cover+Found";
+
+  console.log(game?.screenshots);
+
+  let screenshot = game?.coverUrl.replace("t_thumb", "t_1080p") ?? url;
+
   return (
     <div className="flex flex-col grow">
       <Header />
       <div className="relative flex h-96">
-        <img src={image} className="object-cover min-w-full" alt="" />
+        <img src={screenshot} className="object-cover min-w-full" alt="" />
         <div className="absolute top-4 left-4 font-bold font-mono text-white">
           <Breadcrubms key={"breadcrumbs"} />
         </div>
@@ -45,7 +54,9 @@ export default function GameDetails() {
           </div>
           <div className="w-1/3">
             <div className="flex gap-2 flex-wrap items-start">
-              {genres.map(genre => (<GengeChip key={genre} genre={genre} />))}
+              {genres.map((genre) => (
+                <GengeChip key={genre} genre={genre} />
+              ))}
             </div>
             <div className="h-4" />
             <div className="flex">
