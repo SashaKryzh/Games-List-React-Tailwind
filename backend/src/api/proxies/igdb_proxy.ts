@@ -19,6 +19,7 @@ export default class IGDBProxy {
         grant_type: "client_credentials",
       }
     });
+    console.log(authResponse.data.access_token);
     this.apiInstance = axios.create({
       baseURL: IGDBProxy.API_BASE_URL,
       headers: {

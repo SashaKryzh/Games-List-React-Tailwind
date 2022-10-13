@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 
@@ -8,7 +7,7 @@ export default function Breadcrubms() {
   return (
     <div>
       {breadcrumbs.map(({ match, breadcrumb }, i) => (
-        <NavLink to={match.pathname}>
+        <NavLink key={i} to={match.pathname}>
           {breadcrumb}
           {i < breadcrumbs.length - 1 ? " / " : null}
         </NavLink>
