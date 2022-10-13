@@ -4,7 +4,7 @@ import IGDBProxy from "../proxies/igdb_proxy.js";
 export default class GameController {
 
     static async getGames(): Promise<Game[]> {
-        const response = await IGDBProxy.post("/games", "fields id, slug, name, cover.url;");
+        const response = await IGDBProxy.post("/games", "fields id, slug, name, cover.url; limit 20;");
         console.log(response.data);
         if (response.status !== 200) {
             return [];
