@@ -26,7 +26,7 @@ export default function useGames(query: string, page: number): UseGamesResult {
       setGames([]);
       setLastPage(page);
     }
-  }, [page]);
+  }, [page, lastPage]);
 
   useEffect(() => {
     setLoading(true);

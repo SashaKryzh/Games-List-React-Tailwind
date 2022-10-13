@@ -22,6 +22,7 @@ function Games() {
   const [query, setQuery] = useState("");
   const [searchBar, setSearchBar] = useState("");
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { games, loading, error, hasMore } = useGames(query, page);
 
   useEffect(() => {
