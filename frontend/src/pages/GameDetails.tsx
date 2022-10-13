@@ -30,7 +30,7 @@ export default function GameDetails() {
       <div className="relative flex h-96">
         <img src={image} className="object-cover min-w-full" alt="" />
         <div className="absolute top-4 left-4 font-bold font-mono text-white">
-          <Breadcrubms />
+          <Breadcrubms key={"breadcrumbs"} />
         </div>
       </div>
       <div className="p-4 grow m-auto w-2/3">
