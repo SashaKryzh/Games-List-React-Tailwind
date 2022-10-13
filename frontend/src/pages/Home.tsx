@@ -1,10 +1,11 @@
 import { Game } from "@app/models";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import GamesApi from "../api/games_api";
 import Footer from "../components/Footer";
 import GameTile from "../components/GameTile";
 import { Header } from "../components/Header";
 import MainContent from "../components/MainContent";
+import useGames from "../hooks/useGames";
 
 export default function Home() {
   return (
@@ -19,25 +20,39 @@ export default function Home() {
 }
 
 function Games() {
-  const [gamesList, setGamesList] = useState<Game[]>([]);
-  const [searchBar, setSearchBar] = useState<string>("");
+  const [page, setPage] = useState(1);
+  const [query, setQuery] = useState("");
+  const [searchBar, setSearchBar] = useState("");
 
-  useEffect(() => {
-    console.log("Fetching games");
-    GamesApi.getGames().then(setGamesList);
-  }, []);
+  const { games, loading, error, hasMore } = useGames(query, page);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      if (searchBar.length > 0) {
-        GamesApi.getGamesByName(searchBar).then(setGamesList);
-      } else {
-        GamesApi.getGames().then(setGamesList);
-      }
-    }, 500)
+      setQuery(searchBar);
+    }, 500);
 
-    return () => clearTimeout(delayDebounceFn)
+    return () => clearTimeout(delayDebounceFn);
   }, [searchBar]);
+
+  const observer = useRef<any>();
+  const lastGameElementRef = useCallback(
+    (node: any) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPage((prevPage) => prevPage + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
+
+  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearchBar(e.target.value);
+    setPage(1);
+  }
 
   return (
     <div className="py-4">
@@ -47,15 +62,22 @@ function Games() {
           className="w-2/3 px-4 py-2 rounded-md border-2 border-slate-500 focus:outline-none focus:border-slate-400 bg-slate-700 text-slate-300"
           placeholder="Search for a game"
           value={searchBar}
-          onChange={(e) => setSearchBar(e.target.value)}
+          onChange={handleSearch}
         />
       </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 items-stretch">
-        {gamesList.map((game) => (
-          <GameTile key={game.id} game={game} />
-        ))}
+        {games.map((game, index) => {
+          if (index == games.length - 1) {
+            return (
+              <div ref={lastGameElementRef} key={game.id}>
+                <GameTile game={game} />
+              </div>
+            );
+          } else {
+            return <GameTile key={game.id} game={game} />;
+          }
+        })}
       </div>
-      {/* TODO: Pagination */}
     </div>
   );
 }

@@ -8,8 +8,11 @@ export default class GamesApi {
     baseURL: GamesApi.API_BASE_URL,
   });
 
-  static async getGamesByName(name: string): Promise<Game[]> {
-    const response = await GamesApi.instance.get<Game[]>(`/games/name/${name}`);
+  static async getGamesByName(name: string, page: number): Promise<Game[]> {
+    const response = await GamesApi.instance.get<Game[]>(
+      `/games/name/${name}`,
+      { params: { page: page } }
+    );
     return response.data;
   }
 
@@ -18,8 +21,10 @@ export default class GamesApi {
     return response.data;
   }
 
-  static async getGames(): Promise<Game[]> {
-    const response = await GamesApi.instance.get<Game[]>("/games");
+  static async getGames(page: number): Promise<Game[]> {
+    const response = await GamesApi.instance.get<Game[]>("/games", {
+      params: { page: page },
+    });
     return response.data;
   }
 }
