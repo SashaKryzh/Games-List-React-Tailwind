@@ -27,7 +27,7 @@ export default function GameDetails() {
   return (
     <div className="flex flex-col grow">
       <Header />
-      <div className="relative flex h-96">        
+      <div className="relative flex h-96">
         <img src={image} className="object-cover min-w-full" alt="" />
         <div className="absolute top-4 left-4 font-bold font-mono text-white">
           <Breadcrubms />
@@ -37,7 +37,7 @@ export default function GameDetails() {
         <div className="h-4" />
         <h1 className="text-4xl font-bold text-white">{title}</h1>
         <div className="h-2" />
-        <a className="text-md text-gray-300">{company}</a>
+        <span className="text-md text-gray-300">{company}</span>
         <div className="h-6" />
         <div className="flex space-x-4 items-start">
           <div className="w-2/3">
