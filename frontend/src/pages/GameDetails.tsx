@@ -18,26 +18,25 @@ export default function GameDetails() {
       .then(setGame);
   }, [id]);
 
-  console.log(game);
-
-  const image = game?.coverUrl ?? "https://via.placeholder.com/300x400";
   const title = game?.name ?? "Loading...";
   const description = game?.summary ?? "Loading...";
   const company = game?.company ?? "Loading...";
   const genres: string[] = game?.genres ?? [];
 
-  let url =
-    "https://via.placeholder.com/150/000000/FFFFFF/?text=No+Cover+Found";
-
-  console.log(game?.screenshots);
-
-  let screenshot = game?.coverUrl.replace("t_thumb", "t_1080p") ?? url;
+  let image;
+  if (game) {
+    image =
+      game?.coverUrl.replace("t_thumb", "t_1080p") ??
+      "https://via.placeholder.com/300x400";
+  } else {
+    image = "";
+  }
 
   return (
     <div className="flex flex-col grow">
       <Header />
       <div className="relative flex h-96">
-        <img src={screenshot} className="object-cover min-w-full" alt="" />
+        <img src={image} className="object-cover min-w-full" alt="" />
         <div className="absolute top-4 left-4 font-bold font-mono text-white">
           <Breadcrubms key={"breadcrumbs"} />
         </div>
