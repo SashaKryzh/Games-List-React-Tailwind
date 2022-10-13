@@ -1,6 +1,4 @@
-import { Game } from "@app/models";
 import { useCallback, useEffect, useRef, useState } from "react";
-import GamesApi from "../api/games_api";
 import Footer from "../components/Footer";
 import GameTile from "../components/GameTile";
 import { Header } from "../components/Header";
@@ -67,7 +65,7 @@ function Games() {
       </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 items-stretch">
         {games.map((game, index) => {
-          if (index == games.length - 1) {
+          if (index === games.length - 1) {
             return (
               <div ref={lastGameElementRef} key={game.id}>
                 <GameTile game={game} />

@@ -14,7 +14,7 @@ export default function GameDetails() {
 
   useEffect(() => {
     GamesApi.getGamesBySlug(`${id}`).then(games => games[0] ?? null).then(setGame);
-  }, []);
+  }, [id]);
 
   console.log(game);
 
