@@ -9,6 +9,5 @@ Both: `pnpm start`.
 ## TODO
 
 - [ ] Dark/light mode
-- [ ] Save home page state
-- [ ] Game detail all info
+- [x] Game detail all info
 - [x] Pagination

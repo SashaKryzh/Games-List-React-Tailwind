@@ -32,7 +32,7 @@ export default class GameController {
   static async getGamesBySlug(slug: string): Promise<Game[]> {
     const response = await IGDBProxy.post(
       "/games",
-      `fields id, slug, name, cover.url, summary, genres.name, screenshots.url; limit 20; where slug = "${slug}" & cover.url != null;`
+      `fields id, slug, name, cover.url, summary, genres.name, involved_companies.company.name; screenshots.url; limit 20; where slug = "${slug}" & cover.url != null;`
     );
     if (response.status !== 200) {
       return [];
@@ -52,7 +52,7 @@ export default class GameController {
       screenshots: response.screenshots?.map(
         (screenshot: any) => screenshot.url
       ),
-      company: response.company?.name,
+      company: response.involved_companies?.[0]?.company?.name,
     };
   }
 }
