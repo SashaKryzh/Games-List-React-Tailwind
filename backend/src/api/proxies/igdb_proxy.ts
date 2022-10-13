@@ -27,7 +27,6 @@ export default class IGDBProxy {
         'Authorization': `Bearer ${authResponse.data.access_token}`,
       }
     });
-    console.log(authResponse.data.access_token);
   }
 
   static async post(path: string, body: string): Promise<AxiosResponse<any, any>> {

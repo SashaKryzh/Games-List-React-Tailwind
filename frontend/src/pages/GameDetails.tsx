@@ -23,7 +23,7 @@ export default function GameDetails() {
         <div className="h-4" />
         <h1 className="text-4xl font-bold text-white">Game name</h1>
         <div className="h-2" />
-        <a className="text-md text-gray-300">Sudio name</a>
+        <span className="text-md text-gray-300">Sudio name</span>
         <div className="h-6" />
         <div className="flex space-x-4 items-start">
           <div className=" w-2/3">
@@ -62,10 +62,10 @@ export default function GameDetails() {
             <div className="flex">
               <Like
                 like={false}
-                active={liked == false}
+                active={liked === false}
                 onClick={onLikeChange}
               />
-              <Like active={liked == true} onClick={onLikeChange} />
+              <Like active={liked === true} onClick={onLikeChange} />
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function GameDetails() {
   );
 
   function onLikeChange(clicked: boolean) {
-    setLiked(liked == clicked ? null : clicked);
+    setLiked(liked === clicked ? null : clicked);
   }
 }
 

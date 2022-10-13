@@ -18,7 +18,6 @@ app.use("/games", gameRoutes);
 
 const port = process.env.PORT || 3030;
 app.set('port', port);
-console.log(port);
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
 

@@ -5,7 +5,6 @@ export default class GameController {
 
     static async getGames(): Promise<Game[]> {
         const response = await IGDBProxy.post("/games", "fields id, slug, name, cover.url; limit 20;");
-        console.log(response.data);
         if (response.status !== 200) {
             return [];
         }
@@ -13,8 +12,7 @@ export default class GameController {
     }
 
     static async getGamesByName(name: string): Promise<Game[]> {
-        const response = await IGDBProxy.post("/games", `fields id, slug, name, cover.url, summary, genres.name, screenshots.url; search "${name}";`);
-        console.log(response.data);
+        const response = await IGDBProxy.post("/games", `fields id, slug, name, cover.url, summary, genres.name, screenshots.url; limit 20; search "${name}";`);
         if (response.status !== 200) {
             return [];
         }
@@ -23,9 +21,8 @@ export default class GameController {
     }
 
     static async getGamesBySlug(slug: string): Promise<Game[]> {
-        const response = await IGDBProxy.post("/games", `fields id, slug, name, cover.url, summary, genres.name, screenshots.url; where slug = "${slug}";`);
+        const response = await IGDBProxy.post("/games", `fields id, slug, name, cover.url, summary, genres.name, screenshots.url; limit 20; where slug = "${slug}";`);
         if (response.status !== 200) {
-            console.log(response.data);
             return [];
         }
         // TODO: populate with company
