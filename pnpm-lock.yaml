@@ -47,8 +47,10 @@ importers:
       react: ^18.2.0
       react-dom: ^18.2.0
       react-icons: ^4.4.0
+      react-intersection-observer: ^9.4.0
       react-router-dom: '6'
       react-scripts: 5.0.1
+      tailwind-scrollbar: 2.1.0-preview.0
       tailwindcss: ^3.1.8
       typescript: ^4.8.4
       use-react-router-breadcrumbs: ^4.0.0
@@ -66,8 +68,10 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-icons: 4.4.0_react@18.2.0
+      react-intersection-observer: 9.4.0_react@18.2.0
       react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
       react-scripts: 5.0.1_uz2ogxeagc4rbieizlfzyaazee
+      tailwind-scrollbar: 2.1.0-preview.0_tailwindcss@3.1.8
       typescript: 4.8.4
       use-react-router-breadcrumbs: 4.0.0_pabvhrceggmmmx2imbdwgld6kq
       web-vitals: 2.1.4
@@ -8131,6 +8135,14 @@ packages:
       react: 18.2.0
     dev: false
 
+  /react-intersection-observer/9.4.0_react@18.2.0:
+    resolution: {integrity: sha512-v0403CmomOVlzhqFXlzOxg0ziLcVq8mfbP0AwAcEQWgZmR2OulOT79Ikznw4UlB3N+jlUYqLMe4SDHUOyp0t2A==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
@@ -9105,6 +9117,15 @@ packages:
 
   /symbol-tree/3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
+    dev: false
+
+  /tailwind-scrollbar/2.1.0-preview.0_tailwindcss@3.1.8:
+    resolution: {integrity: sha512-FEyIS5G92onTdp+HbDyP2+hT6bSLFOWqzkWY03PujxmBDeQeqOL9xnmTYDzqFFpOAZWJCHx1QYUo8M18bMNpnA==}
+    engines: {node: '>=12.13.0'}
+    peerDependencies:
+      tailwindcss: 3.x
+    dependencies:
+      tailwindcss: 3.1.8_postcss@8.4.17
     dev: false
 
   /tailwindcss/3.1.8_postcss@8.4.17:

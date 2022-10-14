@@ -6,5 +6,10 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+    function ({ addVariant }) {
+      addVariant('scrollbar-thumb', '&::-webkit-scrollbar-thumb')
+    },
+  ],
 }
