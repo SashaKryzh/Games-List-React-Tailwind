@@ -43,13 +43,13 @@ export default function GameDetails() {
       </div>
       <div className="p-4 grow m-auto w-2/3">
         <div className="h-4" />
-        <h1 className="text-4xl font-bold text-white">{title}</h1>
+        <h1 className="text-4xl font-bold text-gray-800 dark:text-white">{title}</h1>
         <div className="h-2" />
-        <span className="text-md text-gray-300">{company}</span>
+        <span className="text-md text-gray-500 dark:text-gray-300">{company}</span>
         <div className="h-6" />
         <div className="flex space-x-4 items-start">
           <div className="w-2/3">
-            <p className="text-md text-gray-200">{description}</p>
+            <p className="text-md text-gray-700 dark:text-gray-200">{description}</p>
           </div>
           <div className="w-1/3">
             <div className="flex gap-2 flex-wrap items-start">
@@ -81,7 +81,7 @@ export default function GameDetails() {
 
 function GengeChip(props: { genre: string }): ReactElement {
   return (
-    <div className="bg-slate-600 py-1 px-3 rounded-full outline-slate-500 border text-gray-200 text-sm">
+    <div className="bg-white dark:bg-slate-600 py-1 px-3 rounded-full border border-gray-300 text-gray-500 dark:text-gray-200 text-sm">
       {props.genre}
     </div>
   );

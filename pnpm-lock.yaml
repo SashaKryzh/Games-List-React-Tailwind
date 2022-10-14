@@ -51,6 +51,7 @@ importers:
       react-router-dom: '6'
       react-scripts: 5.0.1
       tailwind-scrollbar: 2.1.0-preview.0
+      react-singleton-hook: ^4.0.0
       tailwindcss: ^3.1.8
       typescript: ^4.8.4
       use-react-router-breadcrumbs: ^4.0.0
@@ -72,6 +73,7 @@ importers:
       react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
       react-scripts: 5.0.1_uz2ogxeagc4rbieizlfzyaazee
       tailwind-scrollbar: 2.1.0-preview.0_tailwindcss@3.1.8
+      react-singleton-hook: 4.0.0_biqbaboplfbrettd7655fr4n2y
       typescript: 4.8.4
       use-react-router-breadcrumbs: 4.0.0_pabvhrceggmmmx2imbdwgld6kq
       web-vitals: 2.1.4
@@ -8277,6 +8279,22 @@ packages:
       - webpack-cli
       - webpack-hot-middleware
       - webpack-plugin-serve
+    dev: false
+
+  /react-singleton-hook/4.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-VZ5qWDU8xMQw3TC9Z22VEKck/6jPVAAG3op6mm+Nq/BTzlKMRZIOH8z331GdI00Zh+8IZ0sIWCxTdk1ca+NIMA==}
+    peerDependencies:
+      react: '18'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react/18.2.0:

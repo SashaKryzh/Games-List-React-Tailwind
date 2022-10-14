@@ -58,7 +58,7 @@ function Games() {
       <div className="flex justify-center py-4">
         <input
           type="text"
-          className="w-2/3 px-4 py-2 rounded-md border-2 border-slate-500 focus:outline-none focus:border-slate-400 bg-slate-700 text-slate-300"
+          className="w-2/3 px-4 py-2 rounded-md border-2 border-slate-200 dark:border-slate-500 focus:outline-none focus:border-slate-300 dark:focus:border-slate-400 bg-gray-50 dark:bg-slate-700 text-slate-500 dark:text-slate-300"
           placeholder="Search for a game"
           value={searchBar}
           onChange={handleSearch}
