@@ -8,6 +8,6 @@ Both: `pnpm start`.
 
 ## TODO
 
-- [ ] Dark/light mode
+- [x] Dark/light mode
 - [x] Game detail all info
 - [x] Pagination
