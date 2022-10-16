@@ -1,13 +1,13 @@
-# A new project
+# Games List (React / Tailwind / TypeScript)
 
 ## How to run
 
-Frontend: `pnpm frontend start`.  
-Backend: `pnpm backend start`.  
-Both: `pnpm start`.
+**To run frontend & backend:** `pnpm start`  
+Only frontend: `pnpm frontend start`  
+Only backend: `pnpm backend start`
 
-## TODO
+## Features
 
-- [x] Dark/light mode
-- [x] Game detail all info
-- [x] Pagination
+- Dark / light mode
+- Infinite pagintion
+- Search
