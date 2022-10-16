@@ -20,9 +20,7 @@ export default function GameTile(props: {
       <div className="relative aspect-[3/4] flex">
         <img src={url} className="object-cover min-h-full rounded-lg" alt="" />
         <div className="absolute top-0 left-0 min-h-full min-w-full hover:opacity-50 transition-all bg-gradient-to-t from-black opacity-80 rounded-lg" />
-        <div className="absolute bottom-4 left-4">
-          <span className="text-2xl text-white">{props.game.name}</span>
-        </div>
+        <span className="text-2xl text-white absolute self-end mx-4 mb-4">{props.game.name}</span>
       </div>
     </Link>
   );
