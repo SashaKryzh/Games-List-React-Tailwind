@@ -1,6 +1,7 @@
 {
-  "name": "frontend",
+  "name": "@app/frontend",
   "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "@app/models": "workspace:*",
     "@testing-library/jest-dom": "^5.16.5",
@@ -51,5 +52,8 @@
     "autoprefixer": "^10.4.12",
     "postcss": "^8.4.17",
     "tailwindcss": "^3.1.8"
+  },
+  "exports": {
+    ".": "./index.ts"
   }
 }
