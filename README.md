@@ -1,5 +1,7 @@
 # Games List (React / Tailwind / TypeScript)
 
+![Preview](resources/preview.png)
+
 ## How to run
 
 **To run frontend & backend:** `pnpm start`  
